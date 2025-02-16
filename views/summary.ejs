@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        .author,.title>.title-info>div>a,.notes-title{
+            color: green;
+        }
+
+        .author{
+            font-size: 2rem;
+        }
+        body{
+            background-color: white;
+            color: black;
+            font-size: 1.3rem;
+        }
+        .container{
+            margin:0 2%;
+        }
+
+        .title{
+            display:flex;
+            gap: 20px;
+        }
+
+        .title>div>img{
+            width: 150px;
+            height: 200px;
+        }
+
+        .title-info>div{
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .review{
+            font-weight: bold;
+        }
+
+        .notes-content{
+            font-size: 1.5rem;
+            white-space:pre-wrap;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="author">
+            <h1>Priyam Singh</h1>
+        </div>
+        <div class="title">
+            <div>
+                <img src="<%= locals.result[0].imgurl %>" alt="" srcset="">
+            </div>
+            <div class="title-info">
+                <div>
+                    <a style="text-decoration: solid;">
+                        <%= locals.result[0].title %>
+                    </a>
+                </div>
+                <h3>ISBN: <%= locals.result[0].isbn %></h3>
+                <h3>Date Read: <%= locals.result[0].date %></h3>
+                <h3>Rating: <%= locals.result[0].rating %>/10</h3>
+            </div>  
+        </div>
+        <div class="review">
+            <%= locals.result[0].review %>
+        </div>
+
+        <div class="notes">
+            <div class="notes-title">
+                <h1>My Notes</h1>
+            </div>
+            <div class="notes-content">
+<%= locals.result[0].notes %>                               
+            </div>
+        </div>
+    </div>
+</body>
+</html>

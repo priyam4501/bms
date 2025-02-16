@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        .container{
+            margin: 0 5%;
+        }
+
+        .author{
+            font-size: 40px;
+            font-size: bold;
+            color: green;
+            letter-spacing: 2px;
+        }
+
+        .desc{
+            color: green;
+            letter-spacing: 2px;
+            font-size: 20px;
+        }
+
+        .desc-info{
+            white-space: pre-wrap;
+            font-size: 20px;
+        }
+
+        .book-title{
+            font-weight: bold;
+        }
+
+        .book-title:hover{
+            color:green;
+        }
+
+        .book-info>p{
+            font-size: 1rem;
+        }
+        .book-align{
+            display: flex;
+            gap: 10px;
+        }
+
+        .book-img{
+            margin-right: 5%;
+        }
+
+        .book-img>img{
+            width: 100px;
+            height: 150px
+        }
+
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <br>
+    <div class="container">
+        <form action="/" method="get">
+            <button class="btn btn-outline-success" type="submit">
+                BACK TO HOMEPAGE
+            </button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="author">
+           PRIYAM SINGH 
+        </div>
+        <br>
+        <div class="desc">
+            BOOKS I'VE READ
+        </div>
+
+        <div class="desc-info">
+Tiny summary but detailed notes for each. Use the ISBN number to find it from your local library or anywhere else. This
+page will constantly update as I read more, so bookmark it if you want to check back in a few months.
+
+Sorted with my top recommendations up top. Sort by title, newest, or best.
+
+And please read this FAQ page about these notes, if you have any questions. You can also email me.
+        </div>
+
+        <hr>
+        <br>  
+        
+        <% locals.result.forEach((book)=> {%>
+            <div class="book-container">
+                <!-- Book Image -->
+                <div class="book-align">
+                    <div class="book-img">
+                        <img src="<%= book.imgurl %>" alt="">
+                    </div>
+                    <div class="book-info">
+                        <!-- Book Title -->
+                        <div class="book-title text-lg">
+                            <form action="/summary" method="post">
+                                <input type="hidden" name="isbn" value="<%= book.isbn %>">
+                                <button class="btn" style="font-size: 2rem;" type="submit"><%= book.title %></button>
+                            </form>
+                        </div>
+                        <p class="btn"> DATE READ: <%= book.date %>
+                        </p>
+                        <br>
+                        <p class="btn"> Rating: <%= book.rating %>/10 </p>
+                    </div>
+                </div>
+        
+                <!-- Date -->
+                <div class="book-body">
+                    <!-- Review -->
+                    <div class="review">
+                        <%= book.review %>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+        <% }) %>
+
+    </div>   
+</body>
+</html>
